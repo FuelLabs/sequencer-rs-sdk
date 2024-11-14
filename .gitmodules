@@ -1,0 +1,4 @@
+[submodule "fuel-sequencer"]
+	path = fuel-sequencer
+	url = https://github.com/fuel-infrastructure/fuel-sequencer
+	branch = main
