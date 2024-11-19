@@ -1,6 +1,5 @@
 # Temporary files used in the rust build process
 target/
-protos/
 
 # Rust lockfile
 Cargo.lock

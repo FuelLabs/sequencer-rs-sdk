@@ -1,10 +1,18 @@
+use regex::{
+    Captures,
+    Regex,
+};
 use std::{
     collections::HashMap,
-    env, fs, io,
-    path::{Path, PathBuf}, process::Command,
+    env,
+    fs,
+    io,
+    path::{
+        Path,
+        PathBuf,
+    },
+    process::Command,
 };
-
-use regex::{Captures, Regex};
 
 /// Module tree helper
 #[derive(Default, Debug)]
@@ -41,7 +49,7 @@ impl Tree {
 
         // If this node has associated protobuf code, include it
         if let Some(module) = self.module.as_ref() {
-            let src = read_and_preprocess(format!("protos/{module}")).unwrap();
+            let src = read_and_preprocess(format!("src/protos/{module}")).unwrap();
             result.push_str(&src);
         }
 
@@ -50,7 +58,9 @@ impl Tree {
 }
 
 fn read_and_preprocess<P: AsRef<Path>>(path: P) -> io::Result<String> {
-    Command::new("rustfmt").args(["--edition", "2021", path.as_ref().to_str().unwrap()]).status()?;
+    Command::new("rustfmt")
+        .args(["--edition", "2021", path.as_ref().to_str().unwrap()])
+        .status()?;
 
     let src = fs::read(path).unwrap();
     let result = String::from_utf8_lossy(&src).into_owned();
@@ -61,7 +71,7 @@ fn read_and_preprocess<P: AsRef<Path>>(path: P) -> io::Result<String> {
 
     let replacement = |caps: &Captures| -> String {
         let incl = caps[1].to_string();
-        read_and_preprocess(format!("protos/{incl}")).unwrap()
+        read_and_preprocess(format!("src/protos/{incl}")).unwrap()
     };
 
     Ok(re.replace_all(&result, &replacement).into_owned())
@@ -70,7 +80,7 @@ fn read_and_preprocess<P: AsRef<Path>>(path: P) -> io::Result<String> {
 fn main() {
     // Create module structure from prost output
     let mut tree = Tree::default();
-    fs::read_dir("protos").unwrap().for_each(|entry| {
+    fs::read_dir("src/protos").unwrap().for_each(|entry| {
         let path = entry.unwrap().path();
         let stem = path.file_stem().unwrap().to_str().unwrap().to_string();
         let parts: Vec<&str> = stem.split(".").collect();
@@ -82,6 +92,6 @@ fn main() {
     });
 
     let mut out_dir = PathBuf::from(env::var_os("OUT_DIR").unwrap());
-    out_dir.push("proto.rs");
+    out_dir.push("protos.rs");
     fs::write(out_dir, tree.compile()).unwrap();
 }

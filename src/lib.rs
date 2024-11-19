@@ -1,5 +1,2 @@
-pub mod proto {
-    include!(concat!(env!("OUT_DIR"), "/proto.rs"));
-}
-
+pub mod protos;
 pub use prost::bytes;

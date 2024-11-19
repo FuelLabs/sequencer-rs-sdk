@@ -2,7 +2,15 @@
 name = "fuel-sequencer-proto"
 version = "0.1.0"
 edition = "2021"
-publish = false
+authors = ["Fuel Labs <contact@fuel.sh>"]
+categories = ["concurrency", "cryptography::cryptocurrencies"]
+description = "Fuel SDK to interact with sequencer."
+homepage = "https://fuel.network/"
+license = "BUSL-1.1"
+repository = "https://github.com/FuelLabs/sequencer-rs-sdk"
+keywords = ["blockchain", "cryptocurrencies", "fuel-vm", "vm"]
+
+publish = true
 build = "build.rs"
 
 [dependencies]

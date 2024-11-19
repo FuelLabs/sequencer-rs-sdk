@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [ opened, synchronize, reopened, labeled, unlabeled ]
+  merge_group:
+  release:
+    types: [ published ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_VERSION: 1.79.0
+  RUST_VERSION_FMT: nightly-2024-02-07
+  RUST_VERSION_COV: nightly-2024-06-05
+  GIT_BRANCH: ${{ github.head_ref || github.ref_name }}
+
+jobs:
+  rustfmt:
+    runs-on: buildjet-4vcpu-ubuntu-2204
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install latest nightly
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ env.RUST_VERSION_FMT }}
+          components: rustfmt
+
+      - name: Rustfmt check
+        run: cargo +${{ env.RUST_VERSION_FMT }} fmt --all -- --check
+
+  publish-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ env.RUST_VERSION }}
+
+      - name: Publish crate check
+        uses: FuelLabs/publish-crates@v1
+        with:
+          dry-run: true
+          check-repo: false
+          ignore-unpublished-changes: true
+
+  publish:
+    # Only do this job if publishing a release and all checks pass.
+    needs:
+      - rustfmt
+      - publish-check
+    if: github.event_name == 'release' && github.event.action == 'published'
+    runs-on: buildjet-4vcpu-ubuntu-2204
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ env.RUST_VERSION }}
+
+      - name: Publish crate
+        uses: FuelLabs/publish-crates@v1
+        with:
+          registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
