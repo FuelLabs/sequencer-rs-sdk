@@ -2,8 +2,10 @@
 /// Generated client implementations.
 pub mod sidecar_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
+    use tonic::codegen::{
+        http::Uri,
+        *,
+    };
     #[derive(Debug, Clone)]
     pub struct SidecarClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -47,9 +49,8 @@ pub mod sidecar_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             SidecarClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -91,24 +92,21 @@ pub mod sidecar_client {
             tonic::Response<super::QueryBlockEventsResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.service.v1.Sidecar/GetBlockEvents",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fuelsequencer.service.v1.Sidecar", "GetBlockEvents"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.service.v1.Sidecar",
+                "GetBlockEvents",
+            ));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -210,15 +208,13 @@ pub mod sidecar_server {
                 "/fuelsequencer.service.v1.Sidecar/GetBlockEvents" => {
                     #[allow(non_camel_case_types)]
                     struct GetBlockEventsSvc<T: Sidecar>(pub Arc<T>);
-                    impl<
-                        T: Sidecar,
-                    > tonic::server::UnaryService<super::QueryBlockEventsRequest>
-                    for GetBlockEventsSvc<T> {
+                    impl<T: Sidecar>
+                        tonic::server::UnaryService<super::QueryBlockEventsRequest>
+                        for GetBlockEventsSvc<T>
+                    {
                         type Response = super::QueryBlockEventsResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::QueryBlockEventsRequest>,
@@ -253,18 +249,14 @@ pub mod sidecar_server {
                     };
                     Box::pin(fut)
                 }
-                _ => {
-                    Box::pin(async move {
-                        Ok(
-                            http::Response::builder()
-                                .status(200)
-                                .header("grpc-status", "12")
-                                .header("content-type", "application/grpc")
-                                .body(empty_body())
-                                .unwrap(),
-                        )
-                    })
-                }
+                _ => Box::pin(async move {
+                    Ok(http::Response::builder()
+                        .status(200)
+                        .header("grpc-status", "12")
+                        .header("content-type", "application/grpc")
+                        .body(empty_body())
+                        .unwrap())
+                }),
             }
         }
     }

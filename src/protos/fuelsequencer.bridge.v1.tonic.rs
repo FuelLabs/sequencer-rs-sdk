@@ -2,8 +2,10 @@
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
+    use tonic::codegen::{
+        http::Uri,
+        *,
+    };
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -47,9 +49,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -87,19 +88,14 @@ pub mod query_client {
         pub async fn params(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryParamsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Query/Params",
@@ -116,88 +112,69 @@ pub mod query_client {
             tonic::Response<super::QueryGetLastEthereumNonceResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Query/LastEthereumNonce",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fuelsequencer.bridge.v1.Query", "LastEthereumNonce"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.bridge.v1.Query",
+                "LastEthereumNonce",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn last_ethereum_block_synced(
             &mut self,
-            request: impl tonic::IntoRequest<
-                super::QueryGetLastEthereumBlockSyncedRequest,
-            >,
+            request: impl tonic::IntoRequest<super::QueryGetLastEthereumBlockSyncedRequest>,
         ) -> std::result::Result<
             tonic::Response<super::QueryGetLastEthereumBlockSyncedResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Query/LastEthereumBlockSynced",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "fuelsequencer.bridge.v1.Query",
-                        "LastEthereumBlockSynced",
-                    ),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.bridge.v1.Query",
+                "LastEthereumBlockSynced",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn ethereum_event_index_offset(
             &mut self,
-            request: impl tonic::IntoRequest<
-                super::QueryGetEthereumEventIndexOffsetRequest,
-            >,
+            request: impl tonic::IntoRequest<super::QueryGetEthereumEventIndexOffsetRequest>,
         ) -> std::result::Result<
             tonic::Response<super::QueryGetEthereumEventIndexOffsetResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Query/EthereumEventIndexOffset",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "fuelsequencer.bridge.v1.Query",
-                        "EthereumEventIndexOffset",
-                    ),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.bridge.v1.Query",
+                "EthereumEventIndexOffset",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn supply_delta_info(
@@ -207,24 +184,21 @@ pub mod query_client {
             tonic::Response<super::QueryGetSupplyDeltaInfoResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Query/SupplyDeltaInfo",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fuelsequencer.bridge.v1.Query", "SupplyDeltaInfo"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.bridge.v1.Query",
+                "SupplyDeltaInfo",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn sequencer_address_from_ethereum_address(
@@ -236,27 +210,21 @@ pub mod query_client {
             tonic::Response<super::QuerySequencerAddressFromEthereumAddressResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Query/SequencerAddressFromEthereumAddress",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "fuelsequencer.bridge.v1.Query",
-                        "SequencerAddressFromEthereumAddress",
-                    ),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.bridge.v1.Query",
+                "SequencerAddressFromEthereumAddress",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn ethereum_address_from_sequencer_address(
@@ -268,91 +236,69 @@ pub mod query_client {
             tonic::Response<super::QueryEthereumAddressFromSequencerAddressResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Query/EthereumAddressFromSequencerAddress",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "fuelsequencer.bridge.v1.Query",
-                        "EthereumAddressFromSequencerAddress",
-                    ),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.bridge.v1.Query",
+                "EthereumAddressFromSequencerAddress",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn last_eth_block_update_time(
             &mut self,
-            request: impl tonic::IntoRequest<
-                super::QueryGetLastEthBlockUpdateTimeRequest,
-            >,
+            request: impl tonic::IntoRequest<super::QueryGetLastEthBlockUpdateTimeRequest>,
         ) -> std::result::Result<
             tonic::Response<super::QueryGetLastEthBlockUpdateTimeResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Query/LastEthBlockUpdateTime",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "fuelsequencer.bridge.v1.Query",
-                        "LastEthBlockUpdateTime",
-                    ),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.bridge.v1.Query",
+                "LastEthBlockUpdateTime",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn last_consensus_txs_sequence(
             &mut self,
-            request: impl tonic::IntoRequest<
-                super::QueryGetLastConsensusTxsSequenceRequest,
-            >,
+            request: impl tonic::IntoRequest<super::QueryGetLastConsensusTxsSequenceRequest>,
         ) -> std::result::Result<
             tonic::Response<super::QueryGetLastConsensusTxsSequenceResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Query/LastConsensusTxsSequence",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "fuelsequencer.bridge.v1.Query",
-                        "LastConsensusTxsSequence",
-                    ),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.bridge.v1.Query",
+                "LastConsensusTxsSequence",
+            ));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -367,10 +313,7 @@ pub mod query_server {
         async fn params(
             &self,
             request: tonic::Request<super::QueryParamsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryParamsResponse>,
-            tonic::Status,
-        >;
+        ) -> std::result::Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
         async fn last_ethereum_nonce(
             &self,
             request: tonic::Request<super::QueryGetLastEthereumNonceRequest>,
@@ -514,13 +457,10 @@ pub mod query_server {
                 "/fuelsequencer.bridge.v1.Query/Params" => {
                     #[allow(non_camel_case_types)]
                     struct ParamsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryParamsRequest>
-                    for ParamsSvc<T> {
+                    impl<T: Query> tonic::server::UnaryService<super::QueryParamsRequest> for ParamsSvc<T> {
                         type Response = super::QueryParamsResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::QueryParamsRequest>,
@@ -558,16 +498,14 @@ pub mod query_server {
                 "/fuelsequencer.bridge.v1.Query/LastEthereumNonce" => {
                     #[allow(non_camel_case_types)]
                     struct LastEthereumNonceSvc<T: Query>(pub Arc<T>);
-                    impl<
-                        T: Query,
-                    > tonic::server::UnaryService<
-                        super::QueryGetLastEthereumNonceRequest,
-                    > for LastEthereumNonceSvc<T> {
+                    impl<T: Query>
+                        tonic::server::UnaryService<
+                            super::QueryGetLastEthereumNonceRequest,
+                        > for LastEthereumNonceSvc<T>
+                    {
                         type Response = super::QueryGetLastEthereumNonceResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<
@@ -607,16 +545,14 @@ pub mod query_server {
                 "/fuelsequencer.bridge.v1.Query/LastEthereumBlockSynced" => {
                     #[allow(non_camel_case_types)]
                     struct LastEthereumBlockSyncedSvc<T: Query>(pub Arc<T>);
-                    impl<
-                        T: Query,
-                    > tonic::server::UnaryService<
-                        super::QueryGetLastEthereumBlockSyncedRequest,
-                    > for LastEthereumBlockSyncedSvc<T> {
+                    impl<T: Query>
+                        tonic::server::UnaryService<
+                            super::QueryGetLastEthereumBlockSyncedRequest,
+                        > for LastEthereumBlockSyncedSvc<T>
+                    {
                         type Response = super::QueryGetLastEthereumBlockSyncedResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<
@@ -657,16 +593,14 @@ pub mod query_server {
                 "/fuelsequencer.bridge.v1.Query/EthereumEventIndexOffset" => {
                     #[allow(non_camel_case_types)]
                     struct EthereumEventIndexOffsetSvc<T: Query>(pub Arc<T>);
-                    impl<
-                        T: Query,
-                    > tonic::server::UnaryService<
-                        super::QueryGetEthereumEventIndexOffsetRequest,
-                    > for EthereumEventIndexOffsetSvc<T> {
+                    impl<T: Query>
+                        tonic::server::UnaryService<
+                            super::QueryGetEthereumEventIndexOffsetRequest,
+                        > for EthereumEventIndexOffsetSvc<T>
+                    {
                         type Response = super::QueryGetEthereumEventIndexOffsetResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<
@@ -707,15 +641,13 @@ pub mod query_server {
                 "/fuelsequencer.bridge.v1.Query/SupplyDeltaInfo" => {
                     #[allow(non_camel_case_types)]
                     struct SupplyDeltaInfoSvc<T: Query>(pub Arc<T>);
-                    impl<
-                        T: Query,
-                    > tonic::server::UnaryService<super::QueryGetSupplyDeltaInfoRequest>
-                    for SupplyDeltaInfoSvc<T> {
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryGetSupplyDeltaInfoRequest>
+                        for SupplyDeltaInfoSvc<T>
+                    {
                         type Response = super::QueryGetSupplyDeltaInfoResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<
@@ -755,16 +687,15 @@ pub mod query_server {
                 "/fuelsequencer.bridge.v1.Query/SequencerAddressFromEthereumAddress" => {
                     #[allow(non_camel_case_types)]
                     struct SequencerAddressFromEthereumAddressSvc<T: Query>(pub Arc<T>);
-                    impl<
-                        T: Query,
-                    > tonic::server::UnaryService<
-                        super::QuerySequencerAddressFromEthereumAddressRequest,
-                    > for SequencerAddressFromEthereumAddressSvc<T> {
-                        type Response = super::QuerySequencerAddressFromEthereumAddressResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                    impl<T: Query>
+                        tonic::server::UnaryService<
+                            super::QuerySequencerAddressFromEthereumAddressRequest,
+                        > for SequencerAddressFromEthereumAddressSvc<T>
+                    {
+                        type Response =
+                            super::QuerySequencerAddressFromEthereumAddressResponse;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<
@@ -774,10 +705,9 @@ pub mod query_server {
                             let inner = Arc::clone(&self.0);
                             let fut = async move {
                                 <T as Query>::sequencer_address_from_ethereum_address(
-                                        &inner,
-                                        request,
-                                    )
-                                    .await
+                                    &inner, request,
+                                )
+                                .await
                             };
                             Box::pin(fut)
                         }
@@ -808,16 +738,15 @@ pub mod query_server {
                 "/fuelsequencer.bridge.v1.Query/EthereumAddressFromSequencerAddress" => {
                     #[allow(non_camel_case_types)]
                     struct EthereumAddressFromSequencerAddressSvc<T: Query>(pub Arc<T>);
-                    impl<
-                        T: Query,
-                    > tonic::server::UnaryService<
-                        super::QueryEthereumAddressFromSequencerAddressRequest,
-                    > for EthereumAddressFromSequencerAddressSvc<T> {
-                        type Response = super::QueryEthereumAddressFromSequencerAddressResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                    impl<T: Query>
+                        tonic::server::UnaryService<
+                            super::QueryEthereumAddressFromSequencerAddressRequest,
+                        > for EthereumAddressFromSequencerAddressSvc<T>
+                    {
+                        type Response =
+                            super::QueryEthereumAddressFromSequencerAddressResponse;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<
@@ -827,10 +756,9 @@ pub mod query_server {
                             let inner = Arc::clone(&self.0);
                             let fut = async move {
                                 <T as Query>::ethereum_address_from_sequencer_address(
-                                        &inner,
-                                        request,
-                                    )
-                                    .await
+                                    &inner, request,
+                                )
+                                .await
                             };
                             Box::pin(fut)
                         }
@@ -861,16 +789,14 @@ pub mod query_server {
                 "/fuelsequencer.bridge.v1.Query/LastEthBlockUpdateTime" => {
                     #[allow(non_camel_case_types)]
                     struct LastEthBlockUpdateTimeSvc<T: Query>(pub Arc<T>);
-                    impl<
-                        T: Query,
-                    > tonic::server::UnaryService<
-                        super::QueryGetLastEthBlockUpdateTimeRequest,
-                    > for LastEthBlockUpdateTimeSvc<T> {
+                    impl<T: Query>
+                        tonic::server::UnaryService<
+                            super::QueryGetLastEthBlockUpdateTimeRequest,
+                        > for LastEthBlockUpdateTimeSvc<T>
+                    {
                         type Response = super::QueryGetLastEthBlockUpdateTimeResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<
@@ -911,16 +837,14 @@ pub mod query_server {
                 "/fuelsequencer.bridge.v1.Query/LastConsensusTxsSequence" => {
                     #[allow(non_camel_case_types)]
                     struct LastConsensusTxsSequenceSvc<T: Query>(pub Arc<T>);
-                    impl<
-                        T: Query,
-                    > tonic::server::UnaryService<
-                        super::QueryGetLastConsensusTxsSequenceRequest,
-                    > for LastConsensusTxsSequenceSvc<T> {
+                    impl<T: Query>
+                        tonic::server::UnaryService<
+                            super::QueryGetLastConsensusTxsSequenceRequest,
+                        > for LastConsensusTxsSequenceSvc<T>
+                    {
                         type Response = super::QueryGetLastConsensusTxsSequenceResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<
@@ -958,18 +882,14 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                _ => {
-                    Box::pin(async move {
-                        Ok(
-                            http::Response::builder()
-                                .status(200)
-                                .header("grpc-status", "12")
-                                .header("content-type", "application/grpc")
-                                .body(empty_body())
-                                .unwrap(),
-                        )
-                    })
-                }
+                _ => Box::pin(async move {
+                    Ok(http::Response::builder()
+                        .status(200)
+                        .header("grpc-status", "12")
+                        .header("content-type", "application/grpc")
+                        .body(empty_body())
+                        .unwrap())
+                }),
             }
         }
     }
@@ -1002,8 +922,10 @@ pub mod query_server {
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
+    use tonic::codegen::{
+        http::Uri,
+        *,
+    };
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -1047,9 +969,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1091,22 +1012,21 @@ pub mod msg_client {
             tonic::Response<super::MsgUpdateParamsResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Msg/UpdateParams",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("fuelsequencer.bridge.v1.Msg", "UpdateParams"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.bridge.v1.Msg",
+                "UpdateParams",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn supply_delta(
@@ -1116,22 +1036,21 @@ pub mod msg_client {
             tonic::Response<super::MsgSupplyDeltaResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Msg/SupplyDelta",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("fuelsequencer.bridge.v1.Msg", "SupplyDelta"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.bridge.v1.Msg",
+                "SupplyDelta",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn withdraw_to_ethereum(
@@ -1141,24 +1060,21 @@ pub mod msg_client {
             tonic::Response<super::MsgWithdrawToEthereumResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Msg/WithdrawToEthereum",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fuelsequencer.bridge.v1.Msg", "WithdrawToEthereum"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.bridge.v1.Msg",
+                "WithdrawToEthereum",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn deposit_from_ethereum(
@@ -1168,42 +1084,34 @@ pub mod msg_client {
             tonic::Response<super::MsgDepositFromEthereumResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Msg/DepositFromEthereum",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fuelsequencer.bridge.v1.Msg", "DepositFromEthereum"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.bridge.v1.Msg",
+                "DepositFromEthereum",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn index(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgIndex>,
-        ) -> std::result::Result<
-            tonic::Response<super::MsgIndexResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::MsgIndexResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.bridge.v1.Msg/Index",
@@ -1253,10 +1161,7 @@ pub mod msg_server {
         async fn index(
             &self,
             request: tonic::Request<super::MsgIndex>,
-        ) -> std::result::Result<
-            tonic::Response<super::MsgIndexResponse>,
-            tonic::Status,
-        >;
+        ) -> std::result::Result<tonic::Response<super::MsgIndexResponse>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct MsgServer<T: Msg> {
@@ -1340,13 +1245,10 @@ pub mod msg_server {
                 "/fuelsequencer.bridge.v1.Msg/UpdateParams" => {
                     #[allow(non_camel_case_types)]
                     struct UpdateParamsSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateParams>
-                    for UpdateParamsSvc<T> {
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateParams> for UpdateParamsSvc<T> {
                         type Response = super::MsgUpdateParamsResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::MsgUpdateParams>,
@@ -1384,13 +1286,10 @@ pub mod msg_server {
                 "/fuelsequencer.bridge.v1.Msg/SupplyDelta" => {
                     #[allow(non_camel_case_types)]
                     struct SupplyDeltaSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgSupplyDelta>
-                    for SupplyDeltaSvc<T> {
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgSupplyDelta> for SupplyDeltaSvc<T> {
                         type Response = super::MsgSupplyDeltaResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::MsgSupplyDelta>,
@@ -1428,15 +1327,12 @@ pub mod msg_server {
                 "/fuelsequencer.bridge.v1.Msg/WithdrawToEthereum" => {
                     #[allow(non_camel_case_types)]
                     struct WithdrawToEthereumSvc<T: Msg>(pub Arc<T>);
-                    impl<
-                        T: Msg,
-                    > tonic::server::UnaryService<super::MsgWithdrawToEthereum>
-                    for WithdrawToEthereumSvc<T> {
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgWithdrawToEthereum>
+                        for WithdrawToEthereumSvc<T>
+                    {
                         type Response = super::MsgWithdrawToEthereumResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::MsgWithdrawToEthereum>,
@@ -1474,15 +1370,13 @@ pub mod msg_server {
                 "/fuelsequencer.bridge.v1.Msg/DepositFromEthereum" => {
                     #[allow(non_camel_case_types)]
                     struct DepositFromEthereumSvc<T: Msg>(pub Arc<T>);
-                    impl<
-                        T: Msg,
-                    > tonic::server::UnaryService<super::MsgDepositFromEthereum>
-                    for DepositFromEthereumSvc<T> {
+                    impl<T: Msg>
+                        tonic::server::UnaryService<super::MsgDepositFromEthereum>
+                        for DepositFromEthereumSvc<T>
+                    {
                         type Response = super::MsgDepositFromEthereumResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::MsgDepositFromEthereum>,
@@ -1520,21 +1414,17 @@ pub mod msg_server {
                 "/fuelsequencer.bridge.v1.Msg/Index" => {
                     #[allow(non_camel_case_types)]
                     struct IndexSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgIndex>
-                    for IndexSvc<T> {
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgIndex> for IndexSvc<T> {
                         type Response = super::MsgIndexResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::MsgIndex>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                <T as Msg>::index(&inner, request).await
-                            };
+                            let fut =
+                                async move { <T as Msg>::index(&inner, request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1561,18 +1451,14 @@ pub mod msg_server {
                     };
                     Box::pin(fut)
                 }
-                _ => {
-                    Box::pin(async move {
-                        Ok(
-                            http::Response::builder()
-                                .status(200)
-                                .header("grpc-status", "12")
-                                .header("content-type", "application/grpc")
-                                .body(empty_body())
-                                .unwrap(),
-                        )
-                    })
-                }
+                _ => Box::pin(async move {
+                    Ok(http::Response::builder()
+                        .status(200)
+                        .header("grpc-status", "12")
+                        .header("content-type", "application/grpc")
+                        .body(empty_body())
+                        .unwrap())
+                }),
             }
         }
     }

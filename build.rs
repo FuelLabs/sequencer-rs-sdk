@@ -11,7 +11,6 @@ use std::{
         Path,
         PathBuf,
     },
-    process::Command,
 };
 
 /// Module tree helper
@@ -42,7 +41,8 @@ impl Tree {
 
         // Recursively compile all submodules
         for (submodule, subtree) in self.items.iter() {
-            result.push_str(&format!("pub mod {submodule} {{\n"));
+            result.push_str(&format!("pub mod {submodule}"));
+            result.push_str(" {\n");
             result.push_str(&subtree.compile());
             result.push_str("}\n");
         }
@@ -58,10 +58,6 @@ impl Tree {
 }
 
 fn read_and_preprocess<P: AsRef<Path>>(path: P) -> io::Result<String> {
-    Command::new("rustfmt")
-        .args(["--edition", "2021", path.as_ref().to_str().unwrap()])
-        .status()?;
-
     let src = fs::read(path).unwrap();
     let result = String::from_utf8_lossy(&src).into_owned();
 
@@ -93,5 +89,5 @@ fn main() {
 
     let mut out_dir = PathBuf::from(env::var_os("OUT_DIR").unwrap());
     out_dir.push("protos.rs");
-    fs::write(out_dir, tree.compile()).unwrap();
+    fs::write(&out_dir, tree.compile()).unwrap();
 }

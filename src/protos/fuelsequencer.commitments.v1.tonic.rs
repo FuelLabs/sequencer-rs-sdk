@@ -2,8 +2,10 @@
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
+    use tonic::codegen::{
+        http::Uri,
+        *,
+    };
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -47,9 +49,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -91,27 +92,21 @@ pub mod query_client {
             tonic::Response<super::QueryBridgeCommitmentResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.commitments.v1.Query/BridgeCommitment",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "fuelsequencer.commitments.v1.Query",
-                        "BridgeCommitment",
-                    ),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.commitments.v1.Query",
+                "BridgeCommitment",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn bridge_commitment_inclusion_proof(
@@ -123,27 +118,21 @@ pub mod query_client {
             tonic::Response<super::QueryBridgeCommitmentInclusionProofResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fuelsequencer.commitments.v1.Query/BridgeCommitmentInclusionProof",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "fuelsequencer.commitments.v1.Query",
-                        "BridgeCommitmentInclusionProof",
-                    ),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fuelsequencer.commitments.v1.Query",
+                "BridgeCommitmentInclusionProof",
+            ));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -252,15 +241,13 @@ pub mod query_server {
                 "/fuelsequencer.commitments.v1.Query/BridgeCommitment" => {
                     #[allow(non_camel_case_types)]
                     struct BridgeCommitmentSvc<T: Query>(pub Arc<T>);
-                    impl<
-                        T: Query,
-                    > tonic::server::UnaryService<super::QueryBridgeCommitmentRequest>
-                    for BridgeCommitmentSvc<T> {
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryBridgeCommitmentRequest>
+                        for BridgeCommitmentSvc<T>
+                    {
                         type Response = super::QueryBridgeCommitmentResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::QueryBridgeCommitmentRequest>,
@@ -298,16 +285,15 @@ pub mod query_server {
                 "/fuelsequencer.commitments.v1.Query/BridgeCommitmentInclusionProof" => {
                     #[allow(non_camel_case_types)]
                     struct BridgeCommitmentInclusionProofSvc<T: Query>(pub Arc<T>);
-                    impl<
-                        T: Query,
-                    > tonic::server::UnaryService<
-                        super::QueryBridgeCommitmentInclusionProofRequest,
-                    > for BridgeCommitmentInclusionProofSvc<T> {
-                        type Response = super::QueryBridgeCommitmentInclusionProofResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                    impl<T: Query>
+                        tonic::server::UnaryService<
+                            super::QueryBridgeCommitmentInclusionProofRequest,
+                        > for BridgeCommitmentInclusionProofSvc<T>
+                    {
+                        type Response =
+                            super::QueryBridgeCommitmentInclusionProofResponse;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<
@@ -317,10 +303,9 @@ pub mod query_server {
                             let inner = Arc::clone(&self.0);
                             let fut = async move {
                                 <T as Query>::bridge_commitment_inclusion_proof(
-                                        &inner,
-                                        request,
-                                    )
-                                    .await
+                                    &inner, request,
+                                )
+                                .await
                             };
                             Box::pin(fut)
                         }
@@ -348,18 +333,14 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                _ => {
-                    Box::pin(async move {
-                        Ok(
-                            http::Response::builder()
-                                .status(200)
-                                .header("grpc-status", "12")
-                                .header("content-type", "application/grpc")
-                                .body(empty_body())
-                                .unwrap(),
-                        )
-                    })
-                }
+                _ => Box::pin(async move {
+                    Ok(http::Response::builder()
+                        .status(200)
+                        .header("grpc-status", "12")
+                        .header("content-type", "application/grpc")
+                        .body(empty_body())
+                        .unwrap())
+                }),
             }
         }
     }

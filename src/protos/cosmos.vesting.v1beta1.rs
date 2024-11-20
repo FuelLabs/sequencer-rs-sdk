@@ -4,16 +4,16 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BaseVestingAccount {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub base_account: ::core::option::Option<super::super::auth::v1beta1::BaseAccount>,
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub original_vesting: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub delegated_free: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
-    #[prost(message, repeated, tag="4")]
+    #[prost(message, repeated, tag = "4")]
     pub delegated_vesting: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
     /// Vesting end time, as unix timestamp (in seconds).
-    #[prost(int64, tag="5")]
+    #[prost(int64, tag = "5")]
     pub end_time: i64,
 }
 /// ContinuousVestingAccount implements the VestingAccount interface. It
@@ -21,10 +21,10 @@ pub struct BaseVestingAccount {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContinuousVestingAccount {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub base_vesting_account: ::core::option::Option<BaseVestingAccount>,
     /// Vesting start time, as unix timestamp (in seconds).
-    #[prost(int64, tag="2")]
+    #[prost(int64, tag = "2")]
     pub start_time: i64,
 }
 /// DelayedVestingAccount implements the VestingAccount interface. It vests all
@@ -33,7 +33,7 @@ pub struct ContinuousVestingAccount {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DelayedVestingAccount {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub base_vesting_account: ::core::option::Option<BaseVestingAccount>,
 }
 /// Period defines a length of time and amount of coins that will vest.
@@ -41,9 +41,9 @@ pub struct DelayedVestingAccount {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Period {
     /// Period duration in seconds.
-    #[prost(int64, tag="1")]
+    #[prost(int64, tag = "1")]
     pub length: i64,
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub amount: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
 }
 /// PeriodicVestingAccount implements the VestingAccount interface. It
@@ -51,11 +51,11 @@ pub struct Period {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PeriodicVestingAccount {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub base_vesting_account: ::core::option::Option<BaseVestingAccount>,
-    #[prost(int64, tag="2")]
+    #[prost(int64, tag = "2")]
     pub start_time: i64,
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub vesting_periods: ::prost::alloc::vec::Vec<Period>,
 }
 /// PermanentLockedAccount implements the VestingAccount interface. It does
@@ -66,7 +66,7 @@ pub struct PeriodicVestingAccount {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PermanentLockedAccount {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub base_vesting_account: ::core::option::Option<BaseVestingAccount>,
 }
 // @@protoc_insertion_point(module)

@@ -6,13 +6,13 @@ pub struct ModuleDescriptor {
     /// go_import names the package that should be imported by an app to load the
     /// module in the runtime module registry. It is required to make debugging
     /// of configuration errors easier for users.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub go_import: ::prost::alloc::string::String,
     /// use_package refers to a protobuf package that this module
     /// uses and exposes to the world. In an app, only one module should "use"
     /// or own a single protobuf package. It is assumed that the module uses
     /// all of the .proto files in a single package.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub use_package: ::prost::alloc::vec::Vec<PackageReference>,
     /// can_migrate_from defines which module versions this module can migrate
     /// state from. The framework will check that one module version is able to
@@ -21,7 +21,7 @@ pub struct ModuleDescriptor {
     /// versions. For instance if v3 declares it can migrate from v2, and v2
     /// declares it can migrate from v1, the framework knows how to migrate
     /// from v1 to v3, assuming all 3 module versions are registered at runtime.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub can_migrate_from: ::prost::alloc::vec::Vec<MigrateFromInfo>,
 }
 /// PackageReference is a reference to a protobuf package used by a module.
@@ -29,7 +29,7 @@ pub struct ModuleDescriptor {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PackageReference {
     /// name is the fully-qualified name of the package.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// revision is the optional revision of the package that is being used.
     /// Protobuf packages used in Cosmos should generally have a major version
@@ -66,7 +66,7 @@ pub struct PackageReference {
     /// * protobuf files are carefully annotated with revision comments which
     ///    are important good client UX
     /// * protobuf files are changed in backwards and forwards compatible ways
-    #[prost(uint32, tag="2")]
+    #[prost(uint32, tag = "2")]
     pub revision: u32,
 }
 /// MigrateFromInfo is information on a module version that a newer module
@@ -76,7 +76,7 @@ pub struct PackageReference {
 pub struct MigrateFromInfo {
     /// module is the fully-qualified protobuf name of the module config object
     /// for the previous module version, ex: "cosmos.group.module.v1.Module".
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub module: ::prost::alloc::string::String,
 }
 // @@protoc_insertion_point(module)

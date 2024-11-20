@@ -9,3 +9,5 @@ git submodule update --init
 # Requires `buf` to be installed
 # `brew install buf`
 (buf generate --include-imports --verbose --template buf.gen.rust.yaml)
+
+rustfmt +nightly --edition 2021 src/protos/*.rs
